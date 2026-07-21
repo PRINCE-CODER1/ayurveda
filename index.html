@@ -1882,6 +1882,462 @@
       gap: .9rem
     }
 
+    /* ============ VIDEO CONSULT ============ */
+    .vc-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      background: #0a0f0c;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .5s var(--ease)
+    }
+
+    .vc-overlay.on {
+      opacity: 1;
+      pointer-events: auto
+    }
+
+    .vc-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .8rem 1.5rem;
+      background: rgba(0, 0, 0, .4);
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
+      z-index: 2
+    }
+
+    .vc-header .vc-logo {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      color: var(--cream);
+      font-family: var(--display);
+      font-size: 1rem;
+      font-weight: 500
+    }
+
+    .vc-header .vc-logo svg {
+      color: var(--brass-lt)
+    }
+
+    .vc-timer {
+      font-family: var(--mono);
+      font-size: .82rem;
+      color: var(--brass-lt);
+      letter-spacing: .06em;
+      display: flex;
+      align-items: center;
+      gap: .5rem
+    }
+
+    .vc-timer .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #e74c3c;
+      animation: vcPulse 1.4s infinite
+    }
+
+    @keyframes vcPulse {
+      0%, 100% { opacity: 1 }
+      50% { opacity: .3 }
+    }
+
+    .vc-main {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 0;
+      min-height: 0
+    }
+
+    .vc-video-area {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(ellipse at center, #1a2e22 0%, #0a0f0c 70%);
+      overflow: hidden
+    }
+
+    .vc-doctor-feed {
+      text-align: center;
+      color: var(--cream);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      animation: vcFadeIn .8s ease-out
+    }
+
+    @keyframes vcFadeIn {
+      from { opacity: 0; transform: translateY(16px) }
+      to { opacity: 1; transform: none }
+    }
+
+    .vc-avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--forest), var(--forest-2));
+      display: grid;
+      place-items: center;
+      font-family: var(--display);
+      font-size: 2.6rem;
+      color: var(--cream);
+      border: 3px solid var(--brass);
+      box-shadow: 0 0 60px rgba(180, 135, 47, .25)
+    }
+
+    .vc-doc-name {
+      font-family: var(--display);
+      font-size: 1.3rem;
+      font-weight: 500
+    }
+
+    .vc-doc-status {
+      font-size: .82rem;
+      color: var(--sage);
+      display: flex;
+      align-items: center;
+      gap: .5rem
+    }
+
+    .vc-doc-status .ring {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 2px solid #4caf50;
+      position: relative
+    }
+
+    .vc-doc-status .ring::after {
+      content: '';
+      position: absolute;
+      inset: 2px;
+      background: #4caf50;
+      border-radius: 50%
+    }
+
+    .vc-self-preview {
+      position: absolute;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      width: 180px;
+      height: 130px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #1c3128, #0d1a14);
+      border: 2px solid rgba(255, 255, 255, .12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, .5)
+    }
+
+    .vc-self-label {
+      font-size: .72rem;
+      color: rgba(255, 253, 247, .6);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-family: var(--mono)
+    }
+
+    .vc-sidebar {
+      background: #111a14;
+      border-left: 1px solid rgba(255, 255, 255, .06);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden
+    }
+
+    .vc-sidebar-header {
+      padding: 1rem 1.2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .06);
+      font-family: var(--display);
+      font-size: 1rem;
+      color: var(--cream);
+      display: flex;
+      align-items: center;
+      gap: .5rem
+    }
+
+    .vc-sidebar-header svg {
+      color: var(--brass-lt)
+    }
+
+    .vc-chat {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: .7rem
+    }
+
+    .vc-msg {
+      max-width: 88%;
+      padding: .65rem .9rem;
+      border-radius: 12px;
+      font-size: .85rem;
+      line-height: 1.5;
+      animation: vcSlideUp .35s ease-out
+    }
+
+    @keyframes vcSlideUp {
+      from { opacity: 0; transform: translateY(8px) }
+      to { opacity: 1; transform: none }
+    }
+
+    .vc-msg.doc {
+      background: var(--forest-2);
+      color: var(--cream);
+      align-self: flex-start;
+      border-bottom-left-radius: 4px
+    }
+
+    .vc-msg.sys {
+      background: rgba(255, 255, 255, .06);
+      color: var(--sage);
+      align-self: center;
+      text-align: center;
+      font-size: .76rem;
+      padding: .4rem .8rem;
+      border-radius: 20px
+    }
+
+    .vc-msg.user {
+      background: var(--brass);
+      color: #fff;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px
+    }
+
+    .vc-msg .vc-msg-time {
+      font-size: .65rem;
+      opacity: .6;
+      margin-top: .25rem;
+      display: block
+    }
+
+    .vc-chat-input {
+      padding: .8rem 1rem;
+      border-top: 1px solid rgba(255, 255, 255, .06);
+      display: flex;
+      gap: .5rem
+    }
+
+    .vc-chat-input input {
+      flex: 1;
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 8px;
+      padding: .6rem .85rem;
+      font-size: .88rem;
+      color: var(--cream);
+      font-family: inherit
+    }
+
+    .vc-chat-input input::placeholder {
+      color: rgba(255, 253, 247, .35)
+    }
+
+    .vc-chat-input input:focus {
+      outline: none;
+      border-color: var(--brass)
+    }
+
+    .vc-chat-input button {
+      background: var(--brass);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      width: 38px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: .25s
+    }
+
+    .vc-chat-input button:hover {
+      background: var(--brass-lt)
+    }
+
+    .vc-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
+      background: rgba(0, 0, 0, .5);
+      border-top: 1px solid rgba(255, 255, 255, .06)
+    }
+
+    .vc-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: none;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: .3s var(--ease);
+      color: var(--cream);
+      background: rgba(255, 255, 255, .1)
+    }
+
+    .vc-btn:hover {
+      background: rgba(255, 255, 255, .18);
+      transform: scale(1.08)
+    }
+
+    .vc-btn.active {
+      background: var(--forest-2)
+    }
+
+    .vc-btn.off {
+      background: rgba(255, 255, 255, .06);
+      color: rgba(255, 253, 247, .4)
+    }
+
+    .vc-btn.end {
+      background: #e74c3c;
+      width: 60px;
+      height: 60px
+    }
+
+    .vc-btn.end:hover {
+      background: #c0392b;
+      transform: scale(1.1)
+    }
+
+    .vc-note-banner {
+      background: linear-gradient(135deg, var(--forest), var(--forest-2));
+      color: var(--cream);
+      padding: 1.2rem 1.5rem;
+      border-radius: 12px;
+      margin-top: 1.4rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      font-size: .88rem;
+      line-height: 1.55
+    }
+
+    .vc-note-banner svg {
+      flex: none;
+      color: var(--brass-lt);
+      margin-top: 2px
+    }
+
+    .booking-conf {
+      text-align: center;
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem
+    }
+
+    .booking-conf .tick-circle {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--forest), var(--forest-2));
+      display: grid;
+      place-items: center;
+      margin-bottom: .5rem
+    }
+
+    .booking-conf .booking-id {
+      font-family: var(--mono);
+      font-size: .72rem;
+      letter-spacing: .1em;
+      color: var(--brass);
+      text-transform: uppercase
+    }
+
+    .booking-details {
+      width: 100%;
+      max-width: 420px;
+      background: var(--cream-2);
+      border-radius: 14px;
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+      text-align: left;
+      font-size: .88rem
+    }
+
+    .booking-details .bd-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start
+    }
+
+    .booking-details .bd-row strong {
+      color: var(--forest);
+      min-width: 110px
+    }
+
+    .booking-details .bd-row span {
+      text-align: right
+    }
+
+    .slot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: .5rem;
+      margin-top: .5rem
+    }
+
+    .slot-btn {
+      padding: .55rem .7rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper);
+      font-family: var(--mono);
+      font-size: .72rem;
+      cursor: pointer;
+      transition: .3s var(--ease);
+      text-align: center
+    }
+
+    .slot-btn:hover {
+      border-color: var(--forest)
+    }
+
+    .slot-btn.on {
+      border-color: var(--brass);
+      background: linear-gradient(100deg, rgba(217, 180, 91, .15), transparent);
+      font-weight: 600
+    }
+
+    @media (max-width: 768px) {
+      .vc-main {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr auto
+      }
+
+      .vc-sidebar {
+        border-left: none;
+        border-top: 1px solid rgba(255, 255, 255, .06);
+        max-height: 260px
+      }
+
+      .vc-self-preview {
+        width: 120px;
+        height: 90px;
+        bottom: 1rem;
+        right: 1rem
+      }
+    }
+
     /* ============ BLOG ============ */
     .bl-grid {
       display: grid;
@@ -3219,18 +3675,23 @@
         <h3 class="h-m" style="margin-bottom:.4rem">Request an appointment</h3>
         <p class="muted" style="font-size:.88rem;margin-bottom:1.6rem">The clinic confirms by phone within one working
           day.</p>
+        <div class="field"><label for="cType">Consultation type</label>
+          <select id="cType">
+            <option value="video">Video consultation · ₹600</option>
+            <option value="clinic">Clinic visit · ₹800</option>
+            <option value="whatsapp">WhatsApp consultation · Free</option>
+            <option value="panchakarma">Panchakarma assessment · ₹1,200</option>
+          </select>
+        </div>
         <div class="two">
           <div class="field"><label for="fn">Full name</label><input id="fn" required placeholder="Your name"></div>
           <div class="field"><label for="ph">Phone</label><input id="ph" type="tel" required placeholder="+91"></div>
         </div>
+        <div class="field"><label for="email">Email</label><input id="email" type="email" placeholder="you@email.com (for video link)"></div>
         <div class="two">
           <div class="field"><label for="dt">Preferred date</label><input id="dt" type="date"></div>
-          <div class="field"><label for="tm">Preferred time</label>
-            <select id="tm">
-              <option>Morning · 9:30–12:00</option>
-              <option>Afternoon · 12:00–15:00</option>
-              <option>Evening · 15:00–18:00</option>
-            </select>
+          <div class="field"><label for="tm">Preferred time slot</label>
+            <div class="slot-grid" id="slotGrid"></div>
           </div>
         </div>
         <div class="field"><label for="cn">Main concern</label>
@@ -3249,7 +3710,7 @@
         <div class="field"><label for="nt">Anything the doctor should know</label>
           <textarea id="nt" placeholder="Current medication, allergies, how long you've had the complaint…"></textarea>
         </div>
-        <button type="submit" class="btn btn-solid magnetic" style="width:100%">Request appointment</button>
+        <button type="submit" class="btn btn-solid magnetic" style="width:100%">Book appointment</button>
         <p class="muted" style="font-size:.76rem;margin-top:1rem;text-align:center">This form is a request, not a
           medical record. For emergencies call 108.</p>
       </form>
@@ -3493,6 +3954,57 @@
       stroke-width="2">
       <path d="m5 13 4 4L19 7" />
     </svg><span id="toastMsg"></span></div>
+
+  <!-- ================= VIDEO CONSULTATION ROOM ================= -->
+  <div class="vc-overlay" id="vcOverlay">
+    <div class="vc-header">
+      <div class="vc-logo">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="6" width="14" height="12" rx="3"/><path d="m16 11 6-4v10l-6-4Z"/></svg>
+        <span>Vanaushadhi · Consultation</span>
+      </div>
+      <div class="vc-timer"><span class="dot"></span><span id="vcTimer">00:00</span></div>
+    </div>
+    <div class="vc-main">
+      <div class="vc-video-area">
+        <div class="vc-doctor-feed" id="vcDocFeed">
+          <div class="vc-avatar">HK</div>
+          <div class="vc-doc-name">Dr. Harleen Kaur Sandhu</div>
+          <div class="vc-doc-status"><span class="ring"></span>Connecting…</div>
+        </div>
+        <div class="vc-self-preview">
+          <span class="vc-self-label">You</span>
+        </div>
+      </div>
+      <div class="vc-sidebar">
+        <div class="vc-sidebar-header">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          Consultation notes
+        </div>
+        <div class="vc-chat" id="vcChat"></div>
+        <div class="vc-chat-input">
+          <input id="vcInput" placeholder="Type a message…" autocomplete="off">
+          <button id="vcSend" aria-label="Send"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg></button>
+        </div>
+      </div>
+    </div>
+    <div class="vc-controls">
+      <button class="vc-btn active" id="vcMic" aria-label="Microphone">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="9" y="2" width="6" height="11" rx="3"/><path d="M19 10v1a7 7 0 01-14 0v-1"/><path d="M12 18v4M8 22h8"/></svg>
+      </button>
+      <button class="vc-btn active" id="vcCam" aria-label="Camera">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+      </button>
+      <button class="vc-btn end" id="vcEnd" aria-label="End call">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.68 13.31a16 16 0 003.41 2.6l1.27-1.27a2 2 0 012.11-.45 11.94 11.94 0 003.73.59 2 2 0 012 2v3.4a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.42 19.42 0 01-6-6A19.79 19.79 0 013.02 4.18 2 2 0 015 2h3.4a2 2 0 012 1.72c.12.96.36 1.9.66 2.81a2 2 0 01-.45 2.11z"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+      </button>
+      <button class="vc-btn" id="vcScreen" aria-label="Share screen">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      </button>
+      <button class="vc-btn" id="vcMore" aria-label="More options">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/><circle cx="5" cy="12" r="1.5"/></svg>
+      </button>
+    </div>
+  </div>
 
   <script>
     /* ============================================================
@@ -4195,7 +4707,296 @@
         toast(`Order placed — thank you, ${name}!`);
       });
     });
-    $('#bookForm').addEventListener('submit', e => { e.preventDefault(); e.target.reset(); toast('Request sent — the clinic will call within one working day') });
+    /* ============================================================
+       VIDEO CONSULTATION — full booking + join flow
+       ============================================================ */
+    const SLOTS_DATA = {
+      morning: ['09:30', '10:00', '10:30', '11:00', '11:30'],
+      afternoon: ['12:00', '12:30', '13:00', '13:30', '14:00', '14:30'],
+      evening: ['15:00', '15:30', '16:00', '16:30', '17:00', '17:30']
+    };
+    const ALL_SLOTS = [...SLOTS_DATA.morning, ...SLOTS_DATA.afternoon, ...SLOTS_DATA.evening];
+    let selectedSlot = null;
+
+    /* render time slot buttons */
+    function renderSlots() {
+      const grid = $('#slotGrid');
+      if (!grid) return;
+      // randomly disable a few slots to simulate already-booked
+      const taken = new Set([ALL_SLOTS[2], ALL_SLOTS[5], ALL_SLOTS[9]]);
+      grid.innerHTML = ALL_SLOTS.map(s => {
+        const booked = taken.has(s);
+        return `<button type="button" class="slot-btn${booked ? '' : ''}${s === selectedSlot ? ' on' : ''}" ${booked ? 'disabled style="opacity:.4;cursor:not-allowed"' : ''} data-slot="${s}">${s}</button>`;
+      }).join('');
+    }
+    renderSlots();
+
+    /* slot selection */
+    document.addEventListener('click', e => {
+      const sb = e.target.closest('.slot-btn:not([disabled])');
+      if (sb) {
+        selectedSlot = sb.dataset.slot;
+        $$('.slot-btn').forEach(b => b.classList.toggle('on', b.dataset.slot === selectedSlot));
+      }
+    });
+
+    /* sync consultation type with mode buttons */
+    const cTypeSelect = $('#cType');
+    const modeMap = { 0: 'video', 1: 'clinic', 2: 'whatsapp', 3: 'panchakarma' };
+    const modeMapRev = { video: 0, clinic: 1, whatsapp: 2, panchakarma: 3 };
+    $$('.mode').forEach(m => m.addEventListener('click', () => {
+      const idx = +m.dataset.mode;
+      if (cTypeSelect && modeMap[idx]) cTypeSelect.value = modeMap[idx];
+    }));
+    if (cTypeSelect) cTypeSelect.addEventListener('change', () => {
+      const idx = modeMapRev[cTypeSelect.value];
+      $$('.mode').forEach(m => m.classList.toggle('on', +m.dataset.mode === idx));
+    });
+
+    /* ---- BOOKING FORM SUBMIT ---- */
+    $('#bookForm').addEventListener('submit', e => {
+      e.preventDefault();
+
+      const name = $('#fn').value.trim();
+      const phone = $('#ph').value.trim();
+      const email = ($('#email') && $('#email').value.trim()) || '';
+      const date = $('#dt').value;
+      const concern = $('#cn').value;
+      const notes = $('#nt').value.trim();
+      const consultType = cTypeSelect ? cTypeSelect.value : 'video';
+      const slot = selectedSlot || '10:00';
+
+      if (!name || !phone) { toast('Please fill in your name and phone number'); return; }
+      if (!date) { toast('Please select a preferred date'); return; }
+
+      const typeLabels = { video: 'Video consultation', clinic: 'Clinic visit', whatsapp: 'WhatsApp consultation', panchakarma: 'Panchakarma assessment' };
+      const typePrices = { video: '₹600', clinic: '₹800', whatsapp: 'Free', panchakarma: '₹1,200' };
+      const bookingId = 'VAN-' + Math.floor(100000 + Math.random() * 900000);
+      const dateFormatted = new Date(date + 'T00:00:00').toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+
+      /* build confirmation screen in modal */
+      $('#modalIn').innerHTML = `
+    <div style="display:flex;flex-direction:column">
+      <div class="booking-conf">
+        <div class="tick-circle">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--brass)" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+        </div>
+        <h2 class="h-m">Appointment booked!</h2>
+        <p class="booking-id">#${bookingId}</p>
+        <div class="booking-details">
+          <div class="bd-row"><strong>Type</strong><span>${typeLabels[consultType]}</span></div>
+          <div class="bd-row"><strong>Patient</strong><span>${name}</span></div>
+          <div class="bd-row"><strong>Phone</strong><span>+91 ${phone}</span></div>
+          ${email ? `<div class="bd-row"><strong>Email</strong><span>${email}</span></div>` : ''}
+          <div class="bd-row"><strong>Date</strong><span>${dateFormatted}</span></div>
+          <div class="bd-row"><strong>Time</strong><span>${slot} IST</span></div>
+          <div class="bd-row"><strong>Concern</strong><span>${concern}</span></div>
+          ${notes ? `<div class="bd-row"><strong>Notes</strong><span style="max-width:220px">${notes}</span></div>` : ''}
+          <div style="border-top:1px solid var(--line);padding-top:.5rem;margin-top:.3rem" class="bd-row"><strong>Fee</strong><strong style="color:var(--brass)">${typePrices[consultType]}</strong></div>
+        </div>
+        ${consultType === 'video' ? `
+        <div class="vc-note-banner" style="max-width:420px">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="6" width="14" height="12" rx="3"/><path d="m16 11 6-4v10l-6-4Z"/></svg>
+          <div>
+            <strong style="display:block;margin-bottom:.3rem">Video consultation link</strong>
+            A secure video link will be sent to <strong>${email || phone}</strong> 15 minutes before your appointment. You can also join directly from this page.
+          </div>
+        </div>
+        <button class="btn btn-solid magnetic" id="joinVideoBtn" style="margin-top:1rem;padding:.85rem 2.5rem">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="margin-right:.5rem"><rect x="2" y="6" width="14" height="12" rx="3"/><path d="m16 11 6-4v10l-6-4Z"/></svg>
+          Join video consultation now
+        </button>` : `
+        <div class="vc-note-banner" style="max-width:420px">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.42 19.42 0 01-6-6A19.79 19.79 0 013.02 4.18 2 2 0 015 2h3a2 2 0 012 1.72 12.05 12.05 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 10.8a16 16 0 006 6l2.16-2.16a2 2 0 012.11-.45 12.05 12.05 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          <div>
+            <strong style="display:block;margin-bottom:.3rem">Confirmation coming</strong>
+            The clinic will confirm your ${typeLabels[consultType].toLowerCase()} appointment by calling <strong>+91 ${phone}</strong> within one working day.
+          </div>
+        </div>`}
+        <button class="btn btn-ghost magnetic" data-close style="margin-top:.8rem;padding:.7rem 2rem">Close</button>
+      </div>
+    </div>`;
+
+      open$('#modal');
+      e.target.reset();
+      selectedSlot = null;
+      renderSlots();
+      toast(`Appointment booked — ${typeLabels[consultType]}`);
+
+      /* wire up join video button if video type */
+      if (consultType === 'video') {
+        setTimeout(() => {
+          const joinBtn = $('#joinVideoBtn');
+          if (joinBtn) joinBtn.addEventListener('click', () => startVideoConsultation(name, concern, bookingId));
+        }, 100);
+      }
+    });
+
+    /* ---- VIDEO CONSULTATION ROOM ---- */
+    let vcTimerInterval = null;
+    let vcSeconds = 0;
+    let micOn = true, camOn = true;
+
+    function startVideoConsultation(patientName, concern, bookingId) {
+      closeAll();
+      const overlay = $('#vcOverlay');
+      overlay.classList.add('on');
+      document.body.classList.add('locked');
+
+      /* reset state */
+      vcSeconds = 0;
+      micOn = true;
+      camOn = true;
+      $('#vcMic').classList.remove('off');
+      $('#vcMic').classList.add('active');
+      $('#vcCam').classList.remove('off');
+      $('#vcCam').classList.add('active');
+
+      /* timer */
+      $('#vcTimer').textContent = '00:00';
+      clearInterval(vcTimerInterval);
+      vcTimerInterval = setInterval(() => {
+        vcSeconds++;
+        const m = String(Math.floor(vcSeconds / 60)).padStart(2, '0');
+        const s = String(vcSeconds % 60).padStart(2, '0');
+        $('#vcTimer').textContent = m + ':' + s;
+      }, 1000);
+
+      /* chat */
+      const chat = $('#vcChat');
+      chat.innerHTML = '';
+
+      function addMsg(text, type, delay) {
+        setTimeout(() => {
+          const now = new Date();
+          const time = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+          const div = document.createElement('div');
+          div.className = 'vc-msg ' + type;
+          div.innerHTML = type === 'sys' ? text : text + `<span class="vc-msg-time">${time}</span>`;
+          chat.appendChild(div);
+          chat.scrollTop = chat.scrollHeight;
+        }, delay);
+      }
+
+      /* simulated doctor messages */
+      addMsg('Consultation started', 'sys', 0);
+      addMsg(`Booking ID: #${bookingId}`, 'sys', 300);
+
+      const statusEl = overlay.querySelector('.vc-doc-status');
+      statusEl.innerHTML = '<span class="ring"></span>Connecting…';
+
+      setTimeout(() => {
+        statusEl.innerHTML = '<span class="ring"></span>Connected';
+      }, 2500);
+
+      addMsg(`Namaste ${patientName}! I'm Dr. Harleen Kaur Sandhu. Give me a moment to review your concern.`, 'doc', 3500);
+      addMsg(`I see you're here about <strong>${concern}</strong>. Let me ask you a few questions to understand this better.`, 'doc', 6500);
+      addMsg(`How long have you been experiencing this? And is it continuous or does it come and go?`, 'doc', 9500);
+      addMsg(`Also, are you currently taking any medication — allopathic or otherwise?`, 'doc', 13000);
+
+      /* after a while, add more contextual messages */
+      setTimeout(() => {
+        addMsg(`Take your time. I'm here for the full 40 minutes. There's no rush in Ayurveda.`, 'doc', 0);
+      }, 25000);
+
+      /* user can type messages */
+      const input = $('#vcInput');
+      const sendBtn = $('#vcSend');
+
+      function sendUserMsg() {
+        const msg = input.value.trim();
+        if (!msg) return;
+        addMsg(msg, 'user', 0);
+        input.value = '';
+
+        /* simulate doctor response */
+        const responses = [
+          `Thank you for sharing that. This helps me understand the pattern better.`,
+          `I see. That's quite common with ${concern.toLowerCase()}. Let me explain what's happening from an Ayurvedic perspective.`,
+          `Good. Based on what you've told me, I think we should focus on pacifying the aggravated dosha first.`,
+          `I'll note that down. We'll include this in your protocol.`,
+          `That's an important detail. Many patients overlook this connection between diet and ${concern.toLowerCase()}.`,
+          `Let me recommend a specific formulation. I'll explain the ingredients and dosage in detail.`
+        ];
+        const resp = responses[Math.floor(Math.random() * responses.length)];
+        addMsg(resp, 'doc', 2000 + Math.random() * 2000);
+      }
+
+      sendBtn.onclick = sendUserMsg;
+      input.onkeydown = e => { if (e.key === 'Enter') { e.preventDefault(); sendUserMsg(); } };
+    }
+
+    /* mic toggle */
+    $('#vcMic').addEventListener('click', () => {
+      micOn = !micOn;
+      $('#vcMic').classList.toggle('active', micOn);
+      $('#vcMic').classList.toggle('off', !micOn);
+      toast(micOn ? 'Microphone on' : 'Microphone muted');
+    });
+
+    /* cam toggle */
+    $('#vcCam').addEventListener('click', () => {
+      camOn = !camOn;
+      $('#vcCam').classList.toggle('active', camOn);
+      $('#vcCam').classList.toggle('off', !camOn);
+      const selfPrev = document.querySelector('.vc-self-preview');
+      if (selfPrev) selfPrev.querySelector('.vc-self-label').textContent = camOn ? 'You' : 'Camera off';
+      toast(camOn ? 'Camera on' : 'Camera off');
+    });
+
+    /* screen share */
+    $('#vcScreen').addEventListener('click', () => {
+      toast('Screen sharing is available during live consultations');
+    });
+
+    /* more options */
+    $('#vcMore').addEventListener('click', () => {
+      toast('Settings: Adjust audio, video quality, and language preference');
+    });
+
+    /* end call */
+    function endVideoCall() {
+      clearInterval(vcTimerInterval);
+      const overlay = $('#vcOverlay');
+      overlay.classList.remove('on');
+      document.body.classList.remove('locked');
+
+      const mins = Math.floor(vcSeconds / 60);
+      const secs = vcSeconds % 60;
+
+      /* show summary in modal */
+      $('#modalIn').innerHTML = `
+    <div style="display:flex;flex-direction:column">
+      <div class="booking-conf">
+        <div class="tick-circle">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--brass)" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+        </div>
+        <h2 class="h-m">Consultation complete</h2>
+        <p class="muted" style="font-size:.92rem;max-width:380px;margin-top:.3rem">Your consultation lasted <strong>${mins}m ${secs}s</strong>. A summary and prescription will be sent to your registered phone/email.</p>
+        <div class="booking-details" style="margin-top:1rem">
+          <div class="bd-row"><strong>Duration</strong><span>${mins} min ${secs} sec</span></div>
+          <div class="bd-row"><strong>Doctor</strong><span>Dr. Harleen Kaur Sandhu</span></div>
+          <div class="bd-row"><strong>Status</strong><span style="color:var(--forest)">✓ Completed</span></div>
+        </div>
+        <div class="vc-note-banner" style="max-width:420px;margin-top:1rem">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+          <div>
+            <strong style="display:block;margin-bottom:.3rem">What happens next</strong>
+            A written protocol with diet, lifestyle, and medicine recommendations will be sent within 4 hours. If medicines were discussed, you can order them directly from this page.
+          </div>
+        </div>
+        <div style="display:flex;gap:.8rem;margin-top:1.2rem;flex-wrap:wrap">
+          <a href="#shop" class="btn btn-solid magnetic" data-close>Browse medicines</a>
+          <button class="btn btn-ghost magnetic" data-close>Close</button>
+        </div>
+      </div>
+    </div>`;
+
+      open$('#modal');
+      toast(`Consultation ended — ${mins}m ${secs}s`);
+    }
+
+    $('#vcEnd').addEventListener('click', endVideoCall);
     $('#newsForm').addEventListener('submit', e => { e.preventDefault(); e.target.reset(); toast('Subscribed — first letter arrives at the next ritu') });
 
     /* ============================================================
